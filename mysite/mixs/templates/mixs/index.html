@@ -1,0 +1,50 @@
+{% extends 'mixs/header.html' %}
+
+{% block content %}
+
+
+{% if pps %}
+<div class="container">
+    <h2 class="pb-2 border-bottom">素炼成绩表</h2>
+    <div class="row">
+
+        {% for pp in pps %}
+        <div class="col-sm-3 mt-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pp.item }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ pp.lot }}</h6>
+                    <p class="card-text">{{ pp.created }}</p>
+                    <a href="/mixs/{{ pp.id }}/" class="card-link">查看详情></a>
+                    <!--                <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% else %}
+
+<p>no results.</p>
+
+{% endif %}
+
+
+<hr>
+{% if pps %}
+
+<ul>
+    {% for pp in pps %}
+    <li><a href="/mixs/{{ pp.id }}">{{ pp.item }} {{ pp.lot }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+
+<p>no results.</p>
+
+{% endif %}
+
+
+{% endblock content %}
